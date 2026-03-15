@@ -1,14 +1,55 @@
-# Yuru Reminder
+# ゆるリマインダー
 
-A simple reminder app for relaxed planning.
+プライベートな予定や「いつかやりたいこと」を気軽にメモできる
+ゆるいタスク管理アプリです。
 
-## Features
+## 概要
 
-- Memo list
-- Checkbox completion
-- Icon support
-- Soft UI design
+このアプリはFlutterの学習を目的として作成したスマホアプリです。
+「今月中」「あとで」「いつかやりたいこと」など、ざっくりした予定をメモできるように設計しています。
 
-## Built with
+## 使用技術
 
-Flutter
+* Flutter
+* Dart
+* VSCode
+* Git / GitHub
+
+## 現在の機能
+
+* メモ一覧表示（カードUI）
+* メモ追加画面
+* タイトル入力
+* アイコン選択
+* 保存ボタンでメモ追加
+* チェックボックス表示
+* カラー定義によるUIデザイン
+
+## UIデザイン
+
+* くすみブルーをアクセントカラーに使用
+* 背景はライトグレーでシンプルなUI
+* カード型のメモ表示
+* 丸いアイコン選択UI
+* 影付きの保存ボタン
+
+## カラー設定
+
+```dart
+const mainLightBlue = Color(0xFFABD2D6);
+const backgroundgry = Color(0xFFF5F5F5);
+const backgroundblue = Color(0xFFDDECEE);
+const naturalbrack = Color(0xFF2B2B2B);
+```
+
+## 今後追加予定
+
+* メモの並び替え
+* メモ削除
+* データ保存（アプリを閉じても残るようにする）
+* カレンダーとの連動
+* UI改善
+
+## 制作メモ
+
+Flutterでの個人開発の練習として制作中。
