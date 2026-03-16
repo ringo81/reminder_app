@@ -1,6 +1,7 @@
 //import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 //import 'package:reminder_app/memo.dart';
 
 //カラー定義
@@ -115,12 +116,17 @@ class _HomePageState extends State<HomePage> {
   ///メモカードUI
   Widget buildMemoCard(int index) {
     return Container(
+      key: ValueKey(memos[index]),
+      
       margin: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
       padding: EdgeInsets.all(12),
 
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
+        color: memos[index].isDone
+          ? backgroundblue
+          : Colors.white,
+
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
@@ -153,7 +159,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   memos[index].title,
+
                   style: TextStyle(
+                    color: memos[index].isDone
+                      ? Colors.grey
+                      : naturalbrack,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -181,19 +191,25 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
 
-            ///チェックボックス
-          Checkbox(
-            shape: CircleBorder(),
-            value: false,
-            onChanged: (value){},
-            activeColor: mainLightBlue,
-            checkColor: Colors.white,
+          ///チェックボックス
+          Transform.scale(
+            scale: 1.3,
+          
+            child: Checkbox(
+              shape: CircleBorder(),
+              value: memos[index].isDone,
+
+              onChanged: (value){
+                  setState(() {
+                    memos[index].isDone = value!;
+                  });
+                },
+              activeColor: mainLightBlue,
+            ),
           ),
         ],
       ),
-    );
-
-    
+    );    
   }
 
   @override
@@ -226,13 +242,45 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                child: ListView.builder(
-                  controller: scrollController,
-                  itemCount: memos.length,
-                  itemBuilder: (context, index) {
-                    return buildMemoCard(index);
+                child: ReorderableListView(
+
+                  onReorder: (oldIndex, newIndex) {
+
+                    setState(() {
+                      if (newIndex > oldIndex) {
+                        newIndex -= 1;
+                      }
+                      final item = memos.removeAt(oldIndex);
+                      memos.insert(newIndex, item);
+                    });
                   },
-                ),
+
+                  children: List.generate(
+                    memos.length,
+                    (index) {
+
+                      return Dismissible(
+                        
+                        key: ValueKey(memos[index]),
+
+                        onDismissed: (direction) {
+                          setState(() {
+                            memos.removeAt(index);
+                          });
+                        },
+
+                        background: Container(
+                          color: Colors.red,
+                          alignment: Alignment.centerRight,
+                          padding: EdgeInsets.only(right: 20),
+                          child: Icon(Icons.delete,color: Colors.white),
+                        ),
+
+                        child: buildMemoCard(index),
+                      );
+                    },
+                  ),
+                )
               );
             },
           ),

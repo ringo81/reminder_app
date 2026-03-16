@@ -1,55 +1,25 @@
-# ゆるリマインダー
+## Development Log (Day 2)
 
-プライベートな予定や「いつかやりたいこと」を気軽にメモできる
-ゆるいタスク管理アプリです。
+Today I worked on improving the memo interaction features.
 
-## 概要
+### Implemented
 
-このアプリはFlutterの学習を目的として作成したスマホアプリです。
-「今月中」「あとで」「いつかやりたいこと」など、ざっくりした予定をメモできるように設計しています。
+* Swipe-to-delete using Dismissible
+* Checkbox interaction
+* Toggle memo completion state
+* Visual feedback for completed memos
 
-## 使用技術
+  * gray text
+  * line-through decoration
+* Larger checkbox UI using Transform.scale
+* UI adjustments and styling improvements
 
-* Flutter
-* Dart
-* VSCode
-* Git / GitHub
+### Tried
 
-## 現在の機能
+* Drag-and-drop sorting using ReorderableListView
 
-* メモ一覧表示（カードUI）
-* メモ追加画面
-* タイトル入力
-* アイコン選択
-* 保存ボタンでメモ追加
-* チェックボックス表示
-* カラー定義によるUIデザイン
+This feature is not fully working yet and will be continued in the next development session.
 
-## UIデザイン
+### Notes
 
-* くすみブルーをアクセントカラーに使用
-* 背景はライトグレーでシンプルなUI
-* カード型のメモ表示
-* 丸いアイコン選択UI
-* 影付きの保存ボタン
-
-## カラー設定
-
-```dart
-const mainLightBlue = Color(0xFFABD2D6);
-const backgroundgry = Color(0xFFF5F5F5);
-const backgroundblue = Color(0xFFDDECEE);
-const naturalbrack = Color(0xFF2B2B2B);
-```
-
-## 今後追加予定
-
-* メモの並び替え
-* メモ削除
-* データ保存（アプリを閉じても残るようにする）
-* カレンダーとの連動
-* UI改善
-
-## 制作メモ
-
-Flutterでの個人開発の練習として制作中。
+Focused on improving the usability of the memo list and making the interaction more app-like.
